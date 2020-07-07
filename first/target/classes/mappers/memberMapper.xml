@@ -24,4 +24,9 @@
     	INSERT INTO test_signup_ju(id,password,name) VALUES (#{id}, #{pw}, #{name})
     </insert>
     
+    <!-- 로그인을 위한 쿼리문 -->
+    <select id="loginMember" resultType="memberVO">
+    	SELECT * from test_signup_ju WHERE id = #{id} AND password = #{pw}
+    </select>
+    
 </mapper>

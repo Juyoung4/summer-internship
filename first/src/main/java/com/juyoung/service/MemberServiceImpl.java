@@ -1,6 +1,8 @@
 package com.juyoung.service;
 
 import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +25,9 @@ public class MemberServiceImpl implements MemberService {
     public int memberjoin(MemberVO memberVO) {
     	return dao.join(memberVO);
     }
+    
+    //로그인을 위한 service
+  	public MemberVO memberlogin(Map<String, String>map) {
+  		return dao.login(map);
+  	};
 }

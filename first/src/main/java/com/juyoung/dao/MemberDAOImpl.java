@@ -1,5 +1,6 @@
 package com.juyoung.dao;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
  
@@ -28,5 +29,11 @@ public class MemberDAOImpl implements MemberDAO{
     	cnt = sqlSession.insert(Namespace+".insertMember", memberVO);
     	return cnt;
     }
-
+    
+    //로그인을 구현 구현 메소드
+    public MemberVO login(Map<String, String> map) {
+    	MemberVO vo = new MemberVO();
+    	vo = sqlSession.selectOne(Namespace+".loginMember",map);
+    	return vo;
+    }
 }

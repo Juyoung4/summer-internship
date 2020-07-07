@@ -1,6 +1,7 @@
 package com.juyoung.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.juyoung.dto.MemberVO;
 
@@ -10,4 +11,6 @@ public interface MemberDAO {
 	public List<MemberVO> selectMember() throws Exception;
 	//회원가입을 위한 메소드
 	public int join(MemberVO memberVO);
+	//로그인을 위한 메소드
+	public MemberVO login(Map<String, String> map);
 }

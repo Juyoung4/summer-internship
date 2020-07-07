@@ -1,9 +1,11 @@
 package com.juyoung.controller;
 import java.util.List;
 import java.util.Locale;
- 
+import java.util.Map;
+
 import javax.inject.Inject;
- 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.juyoung.dto.MemberVO;
 import com.juyoung.service.MemberService;
@@ -50,6 +53,27 @@ public class homecontroller {
 		int cnt = 0;
 		cnt = service.memberjoin(memberVO);
 		return cnt==1 ? "users/login" : "users/signup";
+	}
+	
+	
+	/*
+	 * 로그인
+	 */
+	@RequestMapping(value = "/users/login", method = RequestMethod.GET)
+	public String memberLogin() {
+		return "users/login";
+	}
+	
+	@RequestMapping(value = "/users/login", method = RequestMethod.POST)
+	public String memberLogin(@RequestParam Map<String,String> map, HttpSession session) {
+		MemberVO memberVO = service.memberlogin(map);
+		
+		if(memberVO != null) {
+			session.setAttribute("loginMember", memberVO);
+			return "redirect:/";
+		} else {
+			return "redirect:/users/login";
+		}
 	}
 		
 }
