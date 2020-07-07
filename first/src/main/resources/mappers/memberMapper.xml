@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.juyoung.mapper.memberMapper">
+ <!-- 이부분은 쿼리문을 입력하는 부분이다(보통 table당 1개의 mapper.xml을 작성함] -->
+ 	<!-- 
+        mybatis-config.xml의 typeAlias에 등록해두지 않았다면 
+        <select id="selectMember" resultType="com.juyoung.dto.MemberVO" >
+            SELECT ID, PW ,NAME FROM TEST
+        </select>
+        
+        이렇게 해야 한다.
+    -->
+    <!-- select는 조회를 위한 쿼리문에 해당된다[tag의 id는 나중에 DAO에서 사용하기 위해 필요함]
+    resultType은 쿼리 실행 후 결과(데이터)를 memberVO[모델]에 담겠다고 설정함 -->
+    <select id="selectMember" resultType="memberVO">
+        SELECT id, password ,name FROM test_signup_ju
+    </select>
+    
+    <!-- 회원가입을 위한 쿼리문 -->
+    <insert id="insertMember" parameterType="memberVO">
+    	INSERT INTO test_signup_ju(id,password,name) VALUES (#{id}, #{pw}, #{name})
+    </insert>
+    
+</mapper>

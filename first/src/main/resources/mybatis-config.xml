@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+    <configuration>
+	<!-- <typeAliases>를 통해 VO클래스 등록함[mybatis-config.xml에 등록한 이름으로 
+	memberMapper.xml에서 사용함]  --> 
+        <typeAliases>
+            <typeAlias type="com.juyoung.dto.MemberVO" alias="memberVO"/>
+        </typeAliases>
+    </configuration>
