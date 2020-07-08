@@ -24,7 +24,7 @@ global setting과 user setting해주기 (내가 다운받은 maven위치에 있�
  
  #### 간단한 signup과 login view페이지 만들고 DB에서 LIST로 데이터 조회 하고 새로운 가입자 DB에 삽입하기
  
- ### 3일차
+ ### 3일차 (feature3)
  #### Spring security
  #### 처음부터 다시 mvc프로젝트 생성해서 시작함
  #### spring security구조와 security에서 제공해주는 login가지고 커스터마이징
