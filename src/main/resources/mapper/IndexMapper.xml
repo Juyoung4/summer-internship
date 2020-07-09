@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ETS.index.mapper.IndexMapper">
+	
+	<!-- 배너 리스트 -->
+	<select id="getBannerList" resultType="cMap" parameterType="dMap">
+		SELECT BAN_SEQ, EXP_YN, BAN_NAM, BAN_SUB_NAM
+			 , BAN_IMG, BAN_ORG_IMG
+		     , DATE_FORMAT(REG_DT, '%Y-%m-%d') as REG_DATE
+		  FROM banner
+		 WHERE 1=1
+		   AND LANG = #{lang}		 
+		   AND EXP_YN = 'Y'
+		 ORDER BY REG_DT DESC
+	</select>
+	
+	<!-- 팝업 리스트 -->
+	<select id="getPopupList" resultType="cMap" parameterType="dMap">
+		SELECT POP_SEQ, EXP_YN, EXP_SD, EXP_ED, POP_NAM
+		     , POP_URL, POP_IMG, POP_ORG_IMG
+		     , DATE_FORMAT(REG_DT, '%Y-%m-%d') as REG_DATE
+		  FROM popup
+		 WHERE 1=1
+		   AND LANG = #{lang}		  
+		   AND EXP_YN = 'Y'
+		   AND DATE_FORMAT(NOW(), '%Y-%m-%d') BETWEEN EXP_SD AND EXP_ED
+		 ORDER BY REG_DT DESC
+		 LIMIT 2;
+	</select>
+	
+	<!-- 언론기사 리스트 -->
+	<select id="getNewsList" resultType="cMap" parameterType="dMap">
+		SELECT NEWS_SEQ, NEWS_TITLE, NEWS_CONTENT
+			 , DATE_FORMAT(REG_DT, '%Y-%m-%d') as REG_DATE
+		  FROM news
+		 WHERE 1=1
+		   AND LANG = #{lang}
+		 ORDER BY REG_DT DESC
+	 	LIMIT 3;
+	</select>
+</mapper>
