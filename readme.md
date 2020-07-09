@@ -37,4 +37,6 @@ global setting과 user setting해주기 (내가 다운받은 maven위치에 있�
 ### 4일차 (feature 4)
 #### svn 설치(market place에서) + svn 프로젝트 다운로드
 #### svn 프로젝트 코드 분석 [mvc패턴 원리 적용 , tld 이해]
+#### 먼저 이 프로젝트를 위한 tomcat서버 설정하기 -> new server해서 tomcat설정[이름은 ETS]
+#### 그다음 maven install 하기
 #### board게시판 말고 나만의 페이지 생성해서 추가하기[1,2,3,4,5] 각각 자신에 번호에 해당되는 페이지에 만들기
