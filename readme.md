@@ -25,9 +25,9 @@ global setting과 user setting해주기 (내가 다운받은 maven위치에 있�
  #### 간단한 signup과 login view페이지 만들고 DB에서 LIST로 데이터 조회 하고 새로운 가입자 DB에 삽입하기
  
  ### 3일차 (feature3)
- #### Spring security
- #### 처음부터 다시 mvc프로젝트 생성해서 시작함
- #### spring security구조와 security에서 제공해주는 login가지고 커스터마이징
+ Spring security<br>
+ 처음부터 다시 mvc프로젝트 생성해서 시작함<br>
+ spring security구조와 security에서 제공해주는 login가지고 커스터마이징<br>
   + role별로 접속할 수 있는 페이지 설정
   + 로그아웃
   + 로그인 실패 시 에러문구
@@ -35,8 +35,12 @@ global setting과 user setting해주기 (내가 다운받은 maven위치에 있�
   
   
 ### 4일차 (feature 4)
-#### svn 설치(market place에서) + svn 프로젝트 다운로드
-#### svn 프로젝트 코드 분석 [mvc패턴 원리 적용 , tld 이해]
-#### 먼저 이 프로젝트를 위한 tomcat서버 설정하기 -> new server해서 tomcat설정[이름은 ETS]
-#### 그다음 maven install 하기
-#### board게시판 말고 나만의 페이지 생성해서 추가하기[1,2,3,4,5] 각각 자신에 번호에 해당되는 페이지에 만들기
+ svn 설치(market place에서) + svn 프로젝트 다운로드<br>
+ svn 프로젝트 코드 분석 [mvc패턴 원리 적용 , tld 이해]<br>
+ 먼저 이 프로젝트를 위한 tomcat서버 설정하기 -> new server해서 tomcat설정[이름은 ETS]<br>
+ 그다음 maven install 하기<br>
+ board게시판 말고 나만의 페이지 생성해서 추가하기[1,2,3,4,5] 각각 자신에 번호에 해당되는 페이지에 만들기
+
+
+#### 5일차 (feature 5)
+#### 
