@@ -43,4 +43,5 @@ global setting과 user setting해주기 (내가 다운받은 maven위치에 있�
 
 
 #### 5일차 (feature 5)
-#### 
+ 1. spring mvc패턴 view -> controller -> service -> mapper -> mapper.xml 원리 이해
+ 2. board게시판에 검색 엔진 구현 및 alert 구현
