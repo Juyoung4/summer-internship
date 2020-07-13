@@ -42,6 +42,9 @@ global setting과 user setting해주기 (내가 다운받은 maven위치에 있�
  5. board게시판 말고 나만의 페이지 생성해서 추가하기[1,2,3,4,5] 각각 자신에 번호에 해당되는 페이지에 만들기
 
 
-#### 5일차 (feature 5)
+### 5일차 (feature 5)
  1. spring mvc패턴 view -> controller -> service -> mapper -> mapper.xml 원리 이해
  2. board게시판에 검색 엔진 구현 및 alert 구현
+ 
+### 6일차 
+ 1. 새로운 프로젝트에서 먼저 역할을 나누고, 어떻개 구상할 것인지 BOARD예제에서 테스트
