@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.1</jspversion>
+	<shortname>Paging</shortname>
+	
+	<tag>
+		<name>Paging</name>
+		<tagclass>ETS.common.taglib.PagingAction</tagclass>
+		<attribute>
+			<name>url</name>
+			<required>true</required>
+		</attribute>
+		<attribute>
+			<name>pageCount</name>
+		</attribute>
+		<attribute>
+			<name>rowCount</name>
+		</attribute>
+		<attribute>
+			<name>rowMax</name>
+		</attribute>
+		<attribute>
+			<name>nowPage</name>
+		</attribute>
+		<attribute>
+			<name>params</name>
+		</attribute>
+	</tag>
+</taglib>
