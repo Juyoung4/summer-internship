@@ -1,0 +1,96 @@
+@charset "utf-8";
+
+@-webkit-viewport{width:device-width;}
+@-moz-viewport{width:device-width;}
+@-ms-viewport{width:device-width;}
+@-o-viewport{width:device-width;}
+@viewport{width:device-width;}
+*{-webkit-text-size-adjust:none;/*아이폰텍스트확대방지*/
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing: border-box;
+	word-break:break-all;
+	font-family:"맑은 고딕","Malgun Gothic",'돋움','dotum',sans-serif;
+}
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video
+{margin:0;padding:0;border:0;}
+html{overflow-x:hidden;overflow-y:scroll;height:100%;}
+body{height:100%;line-height:1;font-family:"맑은 고딕","Malgun Gothic",'돋움','dotum',sans-serif;font-size:12px;color:#666; background-color:#dce2e3; letter-spacing:-1px; -ms-overflow-style:scrollbar}
+nav,ol,ul{list-style:none;}
+legend{overflow:hidden;line-height:0;font-size:0;text-indent:-9999em;position:absolute;}
+label,input,button,select,img{vertical-align:middle}
+input,button{margin:0;padding:0;font-family:"맑은 고딕","Malgun Gothic",'돋움','dotum',sans-serif;font-size:1em;outline:0;}
+button{cursor:pointer;}
+button *{vertical-align:middle;}
+textarea,select{font-family:"맑은 고딕","Malgun Gothic",'돋움','dotum',sans-serif;font-size:1em;outline:0;}
+select{margin:0}
+p{word-break:break-all}
+b, strong {font-weight:700;}
+i {font-style:normal;}
+a:link,a:visited{font-family:"맑은 고딕","Malgun Gothic",'돋움','dotum',sans-serif;color:#666666;text-decoration:none}
+
+table{width:100%;border-collapse:collapse;border-spacing:0}
+caption {overflow:hidden; line-height:0; font-size:0px; text-indent:-20000px;}
+
+/* STR hmtl5 */
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
+/* END hmtl5*/
+
+/* 모바일 기기에서 사진이나 텍스트를 꾺 누르면 클립보드에 복사하거나 다운로드 할수 있는데 이를 막기위한 방법*/
+.nocallout {-webkit-touch-callout:none;}
+/* 해당 요소 영역을 눌렀을 경우 선택되는 영역의 색상을 원하는 색으로 변경 */
+.pressed {background-color:rgba(0,0,0,0.7);} 
+/* 웹 접근성 관련하여 다양한 형태로 인식 가능하게 하는 스크린 리더를 위한 클래스*/
+.hidden {display:none !important; visibility:hidden;} 
+/* 글씨 유배 시키기 */
+.ir {overflow:hidden; display:block; border:0; background-color:transparent; background-repeat:no-repeat; direction:ltr; text-align:left; text-indent:-9999em;}
+
+.mart5{margin-top:5px !important;}
+.mart10{margin-top:10px !important;}
+.mart15{margin-top:15px !important;}
+.mart20{margin-top:20px !important;}
+.mart25{margin-top:25px !important;}
+.mart30{margin-top:30px !important;}
+.mart35{margin-top:35px !important;}
+.mart40{margin-top:40px !important;}
+.mart45{margin-top:45px !important;}
+.mart50{margin-top:50px !important;}
+.mart55{margin-top:55px !important;}
+.mart60{margin-top:60px !important;}
+.mart65{margin-top:65px !important;}
+.mart70{margin-top:70px !important;}
+.mart75{margin-top:75px !important;}
+.mart80{margin-top:80px !important;}
+.marr5{margin-top:5px !important;}
+.marr10{margin-right:10px !important;}
+.marr15{margin-right:15px !important;}
+.marr20{margin-right:20px !important;}
+.marr25{margin-right:25px !important;}
+.marr30{margin-right:30px !important;}
+.marr35{margin-right:35px !important;}
+.marr40{margin-right:40px !important;}
+.marr45{margin-right:45px !important;}
+.marr50{margin-right:50px !important;}
+.marr55{margin-right:55px !important;}
+.marr60{margin-right:60px !important;}
+.marr65{margin-right:65px !important;}
+.marr70{margin-right:70px !important;}
+.marr75{margin-right:75px !important;}
+.marr80{margin-right:80px !important;}
+.marb10{margin-bottom:10px !important;}
+.marb15{margin-bottom:15px !important;}
+.marb20{margin-bottom:20px !important;}
+.marb25{margin-bottom:25px !important;}
+.marb30{margin-bottom:30px !important;}
+.marb35{margin-bottom:35px !important;}
+.marb40{margin-bottom:40px !important;}
+.marb45{margin-bottom:45px !important;}
+.marb50{margin-bottom:50px !important;}
+.marb55{margin-bottom:55px !important;}
+.marb60{margin-bottom:60px !important;}
+.marb65{margin-bottom:65px !important;}
+.marb70{margin-bottom:70px !important;}
+.marb75{margin-bottom:75px !important;}
+.marb80{margin-bottom:80px !important;}
+
+

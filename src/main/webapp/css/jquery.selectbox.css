@@ -1,0 +1,23 @@
+@CHARSET "UTF-8";
+/* 셀렉트 박스 디자인 */
+.sbHolder{ width: 150px; height: 33px; border: solid 1px #666; background-color: #fff; position: relative; }
+.sbHolder:focus .sbSelector{ }
+
+/* 셀렉트의 selected 옵션*/
+.sbSelector{display: block;width:100%; height: 33px; line-height: 30px; position: absolute; left: 0; top: 0; outline: none; text-indent: 10px; overflow: hidden; }
+.sbSelector:link, 
+.sbSelector:visited,
+.sbSelector:hover{ color: #666; outline: none; text-decoration: none; }
+
+.sbToggle{display:block; width:30px; height:100%; background: #777 url('../images/common/select-icons.png') no-repeat 0 -43px; position:absolute; right: 0; top: 0; outline: none; }
+.sbToggleOpen{ background: #777 url('../images/common/select-icons.png') 0 6px no-repeat; }
+
+.sbHolderDisabled{ background-color: #fff; border: solid 1px #666; }
+.sbOptions{ width: 100%; min-height:100%; max-height:190px; border:solid 1px #666; background-color: #fff; position: absolute; left: -1px; top: 30px; z-index: 1; overflow-y: scroll; }
+.sbOptions li{}
+.sbOptions a{display: block;  padding: 10px 9px; border-bottom: 1px solid #ccc; outline: none; }
+.sbOptions a:link, .sbOptions a:visited{ color: #666; text-decoration: none; }
+.sbOptions a:hover,
+.sbOptions a:focus,
+.sbOptions a.sbFocus{ background-color:#f4f4f4; color: #333; }
+.sbOptions li.last a{ border-bottom: none; }
