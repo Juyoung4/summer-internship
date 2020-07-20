@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ETS.cdw.mapper.CdwMapper">
+	
+	<select id="getCdwList" resultType="cMap" parameterType="dMap">
+		SELECT NOTICE_SEQ
+			 , NOTICE_TITLE
+			 , NOTICE_CONTENT
+			 , IMG_NM
+			 , ORG_IMG_NM
+			 , DATE_FORMAT(REG_DT, '%Y-%m-%d') as REG_DATE
+		  FROM notice
+		 WHERE 1=1
+		   AND LANG = #{lang}
+		 ORDER BY REG_DT DESC
+	 	<if test="@org.apache.commons.lang.StringUtils@isNotEmpty(scopeRow)">
+	 		LIMIT ${scopeRow}, ${rowCount}
+	 	</if>
+	</select>
+	
+	<select id="getCdwListCount" resultType="int" parameterType="cMap">
+		SELECT COUNT(*) AS cnt
+		  FROM notice
+		 WHERE 1=1
+		   AND LANG = #{lang}
+		 ORDER BY REG_DT DESC
+	</select>
+	
+</mapper>

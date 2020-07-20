@@ -1,0 +1,38 @@
+@charset "utf-8";
+header {position:fixed !important; top:0;}
+section {}
+section .contents {max-width:960px; margin:0 auto;}
+section .contents h2 {padding-top:10%; margin-bottom:11%; font-size:3em;}
+section .contents dl {}
+section .contents dl dt {margin:8% 0 5%; font-size:1.714em; color:#000; font-weight:700;}
+section .contents dl dt:first-child { margin-top:0; }
+section .contents dl dd {margin-bottom:2.3%; color:#000; position:relative; letter-spacing: -0.5px; }
+section .contents dl dd:last-child{margin-bottom:17%;}
+section .contents dl dd span {display:inline-block; line-height:1.5; font-size:1.286em;}
+section .contents dl dd .dd_num {position:absolute; left:0;top:0;}
+section .contents dl dd .dd_text {margin-left:10%;}
+section .contents dl dd .dd_text.dd_depth1 {margin-left:16%;}
+
+@media screen and (max-width:1280px) {
+	body {font-size:12px;}
+
+}
+@media screen and (max-width:1024px) {
+	body {font-size:11px;}
+	section .contents {width:90%; margin:0 5%;}
+	section .contents dl dt  {line-height:1.5;}
+}
+@media screen and (max-width:768px) {
+	body {font-size:10px;}
+	section .contents dl dd .dd_text {margin-left:10%;}
+	section .contents dl dd .dd_text.dd_depth1 {margin-left:16%;}
+}
+@media screen and (max-width:563px) {
+	section .contents dl dd .dd_text {margin-left:13%;}
+	section .contents dl dd .dd_text.dd_depth1 {margin-left:19%;}
+}
+
+@media screen and (max-width:480px) {
+	body {font-size:9px;}
+
+}
