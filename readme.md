@@ -68,4 +68,5 @@ global setting과 user setting해주기 (내가 다운받은 maven위치에 있�
  
  ### 11일차 (feature 11)
   1. 이용권 등록시 1일, 7일, 30일, 365일 버튼 누르면 text창에 자동으로 값 증가 , RESET누르면 초기화
-  2. 모달창에 EVENT TABLE 리스트 조회해서 SELECT BOX안에 리스트 목록 값 보여주기
+  2. 모달창에 EVENT TABLE 리스트 조회해서 SELECT BOX안에 리스트 바인딩하기
+  3. main화면에 EXCHANGE TABLE리스트 조회해서 SELECT BOX안에 리스트 바인딩하기
