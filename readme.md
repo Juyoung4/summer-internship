@@ -60,3 +60,12 @@ global setting과 user setting해주기 (내가 다운받은 maven위치에 있�
  ### 9일차 (feature 8)
  1. 이용권 등록하는 페이지 작성하고 Insert 하기
  2. 이용권 삭제하는 작업 하기
+ 
+ ### 10일차 (feature 10)
+ 1. 이용권 삭제 작업 완료
+ 2. 이벤트 table을 새로 만들어서 이용권 속성값 event를 FK로 두기
+ 3. INSERT에서 아무것도 입력안하면 오류창 띄우기
+ 
+ ### 11일차 (feature 11)
+  1. 이용권 등록시 1일, 7일, 30일, 365일 버튼 누르면 text창에 자동으로 값 증가 , RESET누르면 초기화
+  2. 모달창에 EVENT TABLE 리스트 조회해서 SELECT BOX안에 리스트 목록 값 보여주기
