@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+img {width:50%; height:auto;}
+
+#wrap { overflow:hidden; position:relative; }
+/* header */
+
+#header { position:relative;}
+#header .head {height:55px; line-height:55px; text-align:center;}
+#header .head3 { background-color:#95ad5d;} /* 헤더 색상 */
+#header .head3 .m_title {font-size:1.333em; color:#fff;} /* 헤더 타이틀 */
+#header .m_head_prev {position:absolute; left:10px; top:18px;} /* 헤더의 이전으로가기 버튼*/
+
+/* 버튼 박스*/
+.btn_box {}
+.btn_box a {display:inline-block; padding:15px 0; font-size:1.1250em; font-weight:700; color:#fff; text-align:center;}
+.btn_box a.wd20 {width:20%;}
+.btn_box a.wd30 {width:30%;}
+.btn_box a.wd40 {width:40%;}
+.btn_box a.wd50 {width:50%;}
+.btn_box a.wd60 {width:60%;}
+.btn_box a.wd70 {width:70%;}
+.btn_box a.wd80 {width:80%;}
+a.btn_col_gray {background-color:#d9d9d9;}
+a.btn_col_pink {background-color:#e08ab6;}
