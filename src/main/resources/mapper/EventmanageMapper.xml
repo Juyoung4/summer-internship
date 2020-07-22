@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ETS.eventmanage.mapper.EventmanageMapper">
+	<!-- 이벤트리스트 -->
+	<select id="geteventList" resultType="cMap" parameterType="dMap">
+		SELECT EventSeq, EventName, EventPeriodS, EventPeriodF, DiscountRate, EventStatus, Exchange
+		FROM Event_Info
+		WHERE 1=1
+			AND EventSeq > 0
+		ORDER BY EventPeriodS, EventPeriodF, EventName
+		<if test="@org.apache.commons.lang.StringUtils@isNotEmpty(scopeRow)">
+		 		LIMIT ${scopeRow}, ${rowCount}
+		</if>
+	</select>
+	
+	<!-- 이용권 리스트 카운트 -->
+	<select id="geteventListCount" resultType="int" parameterType="cMap">
+		SELECT COUNT(*) AS cnt
+		  FROM Event_Info
+		 WHERE 1=1
+	</select>
+	
+	
+	<!-- 거래소 리스트 -->
+	<select id="getExchangeList" resultType="cMap">
+		SELECT ExchangeName
+		FROM Exchange_Info
+		WHERE 1=1
+		ORDER BY ExchangeName
+	</select>
+	
+	<!-- 이벤트 저장 -->
+	<insert id="SaveEvent" parameterType="dMap">
+		INSERT INTO Exchange_Info
+		  	 ( EventName, EventPeriodS, EventPeriodF, DiscountRate, EventStatus, Exchange)
+		VALUES
+			 ( #{EventName}, #{EventPeriodS}, #{EventPeriodF}, #{DiscountRate} , 1, #{EXsearchType})
+	</insert>
+</mapper>

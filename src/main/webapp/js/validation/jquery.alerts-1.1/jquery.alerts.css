@@ -1,0 +1,112 @@
+#popup_container {
+	min-width: 300px;
+	max-width: 600px !important;
+	padding: 40px 25px 25px !important;
+	text-align:center;
+	background:#fff;
+}
+#popup_title {
+	font-size: 18px;
+    color: #000;
+    font-weight: 500;
+}
+#popup_message {
+	font-size: 18px;
+    margin-top: 45px;
+    font-weight: 500;
+}
+input[type="button"] {
+	display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    transition: all .3s;
+    width: 136px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 18px;
+	background: #73b1ce;
+    color: #fff;
+    margin-top:50px;
+}
+input[type="button"]#popup_cancel {
+	color:#73b1ce;
+	border:1px solid #73b1ce;
+	background:#fff;
+}
+input[type="button"]#popup_ok {
+	color:#fff;
+	border:1px solid #73b1ce;
+}
+#popup_overlay {
+	border-raidus:0;
+	box-shadow:0;
+	max-width:100%;
+	padding:0;
+}
+/* #popup_container {
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	min-width: 300px;
+	max-width: 600px;
+	background: #FFF;
+	border: solid 1px #a59789;
+	color: #000;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	min-height:150px;
+}
+
+#popup_title {
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 2em;
+	color: #fff;
+	background: #b1a599; url(images/title.gif) top repeat-x;
+	border: solid 1px #FFF;
+	border-bottom: solid 1px #999;
+	cursor: default;
+	padding: 5px 0px;
+	margin: 0em;
+	height:30px;
+}
+
+#popup_content {
+	background: 16px 16px no-repeat url(images/info.gif);
+	padding: 1em 1.75em;
+	margin: 0em;
+}
+
+#popup_content.alert {
+	background-image: url(images/info.gif);
+}
+
+#popup_content.confirm {
+	background-image: url(images/important.gif);
+}
+
+#popup_content.prompt {
+	background-image: url(images/help.gif);
+}
+
+#popup_message {
+	color:#8e8071;
+	padding-left: 0px;
+	min-height:60px;
+	font-size: 14px;
+	min-height: 100px;
+}
+
+#popup_panel {
+	text-align: center;
+	margin: 1em 0em 0em 1em;
+}
+
+#popup_prompt {
+	margin: .5em 0em;
+}
+
+#popup_container input[type="button"]{background:#e7603b; box-shadow:0 10px 0 #ee8664 inset; border:1px solid #ca4e2a; padding:10px 20px; font-size:16px; margin:0; color:#fff; border-radius:3px;}
+#popup_container input[type="button"] + input[type="button"]{background:#606060; box-shadow:0 10px 0 #8a8a8a inset; border:1px solid #666;}
+#popup_container input[type="text"]{background:#f8f3f0; border:1px solid #e5d4c2; padding:5px 0;} */
