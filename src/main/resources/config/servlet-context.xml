@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+
+	<!-- cglib : @Transactional without interface (put servlet-context for base-package..) -->
+	<tx:annotation-driven proxy-target-class="true" />
+
+	<context:component-scan base-package="ETS" />
+	
+	<!-- enable autowire -->
+	<context:annotation-config />
+
+	<!-- Static resources(js, css, images, etc) processing -->
+	<mvc:default-servlet-handler />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+
+	<!-- Configures the @Controller programming model -->
+	<mvc:annotation-driven />
+
+	<!-- Interceptors -->
+	<mvc:interceptors>
+		<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="lang" />
+		</bean>
+		<bean id="baseInterceptor" class="ETS.base.BaseInterceptor" />
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/*/ajax**" />
+			<mvc:exclude-mapping path="/ajax**" />
+			<mvc:exclude-mapping path="/login**" />
+			<mvc:exclude-mapping path="/login/**" />
+			<mvc:exclude-mapping path="/sign**" />
+			<mvc:exclude-mapping path="/error/**" />
+			<mvc:exclude-mapping path="/resources/**" />
+			<mvc:exclude-mapping path="/html/**" />
+			<mvc:exclude-mapping path="/common/**" />
+			<mvc:exclude-mapping path="/font**" />
+			<mvc:exclude-mapping path="/js/**" />
+			<mvc:exclude-mapping path="/css/**" />
+			<mvc:exclude-mapping path="/images/**" />
+			<mvc:exclude-mapping path="/upload/**" />
+			<bean id="loginInterceptor" class="ETS.base.LoginInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<cache:annotation-driven />
+
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="ehcache" />
+	</bean>
+
+	<bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:config/ehcache.xml" />
+		<property name="shared" value="true" />
+	</bean>
+
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>/resources/messages/message</value>
+				<value>/resources/messages/common</value>
+			</list>
+		</property>
+		<property name="cacheSeconds" value="0" /> <!-- Every value Seconds reload.. -->
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+
+	<!-- for .. use java bean (excelView) -->
+	<bean id="messageSourceAccessor" class="org.springframework.context.support.MessageSourceAccessor">
+		<constructor-arg ref="messageSource" />
+	</bean>
+
+	<bean id="message" class="ETS.common.Global">
+		<property name="messageSourceAccessor" ref="messageSourceAccessor" />
+	</bean>
+
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="defaultLocale" value="ko" />
+		<property name="cookieName" value="selectLocale" />
+		<property name="cookieMaxAge" value="31536000" /><!-- seconds : 60*60*24*365 -->
+	</bean>
+	
+	<!-- Freemarker config & view resolver -->
+	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/views/" />
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="auto_import">spring.ftl as spring</prop>
+			</props>
+		</property>
+		<property name="defaultEncoding" value="UTF-8" />
+		<!--property name="freemarkerVariables"> <map> <entry key="xml_escape" value-ref="fmXmlEscape"/> </map> </property -->
+	</bean>
+	<!--bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape"/ -->
+
+	<bean id="freeMarkerResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="order" value="1" />
+		<property name="prefix" value="" />
+		<property name="suffix" value=".ftl" />
+		<property name="contentType" value="text/html; charset=UTF-8" />
+	</bean>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="209715200" />
+	</bean>
+	
+	<!-- *.json, *.xml, *.xlsx, *.pdf ... -->
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="order" value="0" />
+		<property name="contentNegotiationManager">
+			<bean class="org.springframework.web.accept.ContentNegotiationManager">
+				<constructor-arg>
+					<bean class="org.springframework.web.accept.PathExtensionContentNegotiationStrategy">
+						<constructor-arg>
+							<map>
+								<entry key="json" value="application/json" />
+							</map>
+						</constructor-arg>
+					</bean>
+				</constructor-arg>
+			</bean>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+			</list>
+		</property>
+	</bean>
+	
+</beans>
