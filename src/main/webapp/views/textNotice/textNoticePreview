@@ -1,0 +1,85 @@
+<script src="/js/download.js"></script>
+<script type="text/javascript">
+	
+	function fn_list(){
+		location.href="/textNotice/textNotice";		
+	}
+	
+	function fn_save(){		
+		oEditors.getById["textnoticeContent"].exec("UPDATE_CONTENTS_FIELD", []);
+		var text = $('#textnoticeContent').val();
+		var texttrim = replaceAll(text, '&nbsp;', '');
+		texttrim = replaceAll(texttrim, ' ', '');
+		texttrim = replaceAll(texttrim, '<p></p>', '');
+	}
+	
+</script>
+	
+<form class="form-inline" name="noticeFrm" id="noticeFrm" method="post" >
+	<input type="hidden" id="textnoticeSeq" name="textnoticeSeq" value="${noticeInfo.textnoticeSeq!}" />
+</form>
+
+<div class="right_col" role="main">
+	<div class="">
+    	<div class="page-title">
+  			<div class="title_left">
+				<h3>미리보기</h3>
+			</div>
+		</div>
+	
+		<div class="clearfix"></div>
+		
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="x_panel board_top">
+					<div class="x_title">
+						<div class="row">
+							<div class="col-md-8 col-sm-8 col-xs-8">
+								<h4>${noticeInfo.textnoticeTitle!}</h4>
+							</div>
+							<div class="col-md-2 col-sm-2 col-xs-2 text-right">
+								${noticeInfo.uploadDate!}
+							</div>
+							<div class="col-md-2 col-sm-2 col-xs-2 text-right">
+								<strong>조회</strong>${noticeInfo.viewCount!}
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<div class="x_panel">
+					<div class="x_content" style="display:none;">
+						<div class="row">
+							<div class="col-md-4 col-sm-4 col-xs-4 text-left">
+								<h4>첨부파일</h4>
+							</div>
+							<div class="col-md-8 col-sm-8 col-xs-8 text-right">
+								<ul>
+									<li>
+										<span class="inline-block mgr5">${noticeInfo.orgImgNm!}</span><button type="button" class="btn btn-primary" onClick="fn_down('${noticeInfo.imgNm?js_string}')">다운로드</button>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="x_content">
+						${noticeInfo.textnoticeContent!}
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12 text-right">
+				<div class="x_panel">
+					<div class="x_content">
+						<a href="#" class="btn btn-primary" onclick="fn_save()">등록하기</a>
+						<a href="#" class="btn btn-info" onclick="fn_list()">취소</a>
+					</div>
+				</div>
+			</div>
+		</div>				
+		
+		<div class="clearfix"></div>
+	</div>
+</div>

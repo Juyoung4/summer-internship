@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+select {width:100%;padding:12px; border:1px solid #e1e1e1; background-color:#fff; color:#888;}
+input[type=text] {width:100%; padding:12px; border:1px solid #e1e1e1;}
+textarea {width:100%; min-height:250px; padding:12px; border:1px solid #e1e1e1;}/* cs ask_texta*/
+
+#container {}
+#container .contents {}
+
+.cs_list {}
+.cs_list li { background-color:#fff; border-bottom:1px solid #d9d9d9;}
+.cs_list li a {display:block; padding:20px 28px; font-size:1.167em; color:#595959; background-repeat:no-repeat;}
+.cs_list a > span {display:block; width:90%; line-height:1.4; text-align:justify ;}
+.cs_list a.cs_main { background-image:url('/images/cs_arrow.png'); background-position:right 28px center; background-size:10px auto;}
+.cs_list a.cs_faq { background-image:url('/images/faq_arrow_off.png'); background-position:right 28px center; background-size:12px auto; }
+.cs_list a.cs_faq.on {background-image:url('/images/faq_arrow_on.png');}
+.cs_list a.cs_faq_new {background-image:url('/images/cs_icon_new.png'),url('/images/faq_arrow_off.png'); background-repeat:no-repeat,no-repeat; background-size:12px auto,14px auto; background-position:right 58px center,right 28px center;}
+.cs_list a.cs_faq_new.on {background-image:url('/images/cs_icon_new.png'),url('/images/faq_arrow_on.png');}
+/* 자주묻는질문 응답 */
+.cs_faq_box {display:none; padding:15px 28px; background-color:#f6f6f6;}
+.cs_faq_a {line-height:1.5; color:#595959;}
+
+/* 문의하기 상세페이지*/
+.cs_ask_box {padding:15px 15px 10px 15px;background-color:#fff;}
+.cs_ask_title {margin:10px 0; font-size:1.1250em; font-weight:700; color:#000;}
+
+.cs_icon_btn {display:inline-block; width:90px; padding:9px 5px 9px 23px; border:1px solid #e1e1e1; text-align:center;}
+.icon_camera {background:url('/images/cs_icon_camera.png') no-repeat left 10px center; background-size:19px auto;}
+
+/* CS 이미지 이름 및 삭제*/
+ul.cs_img_list {margin:10px 0 20px;}
+ul.cs_img_list li {line-height:2; padding:8px 0; border-bottom:1px solid #e1e1e1;}
+ul.cs_img_list li:after {display:block;height:0;line-height:0;clear:both;content:"";}
+ul.cs_img_list li span {float:left; letter-spacing:0;}
+ul.cs_img_list li a {float:right; display:block; width:21px; height:21px; line-height:0; font-size:0; overflow:hidden; text-indent:-20000; background:url('/images/cs_delite.gif') no-repeat; background-size:21px auto;}
+.mobile_info {line-height:1.5; letter-spacing:0;}
+
+.cs_ask_agree { padding:15px;}
+.agree_ment {line-height:1.3;}
+
+label.agree_label {}
+label.agree_label input {}
+label.agree_label span {display:inline-block; vertical-align:middle;}
+

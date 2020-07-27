@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ETS.common.mapper.CommonMapper">
+
+	<!-- 공통 코드 -->
+	<select id="selectCommonCodeMst" resultType="cMap">
+		select cod_dtl_cod, cod_dtl_nam, cod_dtl_seq, cod_grp_nam, cod_par_cod
+		  from sta_cod_mst
+		 order by cod_grp_nam, cod_dtl_seq
+	</select>
+	
+	<!-- 그룹/상위 코드별 공통 코드 -->
+	<select id="selectCommonCodeMstForGrp" resultType="cMap">
+		select code, group_code, code_nm, code_nm_en, code_nm_jp, code_nm_ch
+		     , order_seq
+		  from code
+		  where group_code = #{grpCod}
+		 order by order_seq
+	</select>
+	
+	<!-- 공통 코드 그룹 정보 -->
+	<select id="selectCommonGrpMst" resultType="string">
+		select distinct(cod_grp_nam) as cod_grp_nam
+		  from sta_cod_mst
+		 order by cod_grp_nam
+	</select>
+	
+	<!-- 로그인 회원 정보 -->
+	<select id="selectUserLoginInfo" resultType="cMap" parameterType="dMap">
+		select admin_seq, admin_id, admin_pwd
+		     , admin_nm, reg_dt, last_login_dt
+		     , #{sessionId} as sessionId
+			 , date_format(now(), '%Y-%m-%d %H:%i') as lastRequest
+  		  from admin_base
+  		 where admin_id = #{user_id}
+	</select>
+	
+	<!-- 최종 로그인 시간 -->
+	<!-- update cam_adm_inf
+		   set last_login = now()
+		 where adm_usr_uid = #{user_id} -->
+	<update id="updateAdminLoginLogInfo" parameterType="dMap">
+		 update story_admin
+		    set last_login = now()
+		  where user_id = #{user_id}
+	</update>
+	
+	<!-- 로그인 이력 저장 -->
+	<insert id="insertAdminLoginLogInfo" parameterType="dMap">
+		<selectKey resultType="int" keyProperty="logSeqNum" order="BEFORE">
+			select ifnull(max(log_seq_num), 0) + 1 as logSeqNum from story_admin_log where user_id = #{user_id}
+		</selectKey>
+		insert
+		  into story_admin_log
+		  	 ( user_id, log_seq_num, acc_usr_ip, login_dt)
+		values
+			 ( #{user_id}, #{logSeqNum}, #{accUsrIp}, now())
+	</insert>
+
+</mapper>
