@@ -98,3 +98,7 @@ global setting과 user setting해주기 (내가 다운받은 maven위치에 있�
   1. 이벤트 변경 -> 해당 이벤트 클릭하면 modal창에서 변경 사항 DB에 UPDATE
   2. 레퍼럴 관리에서 Clone 클릭하면 해당 문자열 복사
   3. 레퍼럴 관리에서 저장 누르면 레퍼럴 저장하기
+
+💡 참고사항: 지금 SVN에 서로 COMMIT하고 MERGE되었기 때문에 내가 작성 안한 부분도 있음
+내가 작성한 부분은
+[eventMg] [useticketMg]에 해당되는 java쪽 과 resource들과 header와 footer와 httputils등임
