@@ -101,4 +101,4 @@ global setting과 user setting해주기 (내가 다운받은 maven위치에 있�
 
 💡 참고사항: 지금 SVN에 서로 COMMIT하고 MERGE되었기 때문에 내가 작성 안한 부분도 있음
 내가 작성한 부분은
-[eventMg] [useticketMg]에 해당되는 java쪽 과 resource들과 header와 footer와 httputils등임
+[eventMg] [useticketMg]에 해당되는 java쪽 과 resource들과 header와 footer와 httputils등임 +[refferal]부분 추가됨
