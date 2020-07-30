@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ETS.textNotice.mapper.textNoticeMapper">
+	
+	<!-- 공지사항 리스트 -->
+	<select id="getNoticeList" resultType="cMap" parameterType="dMap">
+		SELECT TEXTNOTICE_SEQ
+			 , UPLOAD_DATE
+			 , TEXTNOTICE_TITLE
+			 , IF(CHAR_LENGTH(TEXTNOTICE_CONTENT)>40,CONCAT(SUBSTR(TEXTNOTICE_CONTENT,1,40),'...'),TEXTNOTICE_CONTENT) AS TEXTNOTICE_CONTENT
+			 , TEXTNOTICE_ADMIN
+			 , VIEW_COUNT
+		     , COALESCE (RESERV,'-') AS RESERV
+		     , IMG_NM
+			 , ORG_IMG_NM
+		FROM textNoticeTable
+		WHERE 1=1
+		<if test="@org.apache.commons.lang.StringUtils@isNotEmpty(searchText)">
+		    AND (TEXTNOTICE_TITLE LIKE '%${searchText}%' or TEXTNOTICE_CONTENT LIKE '%${searchText}%')
+		</if>
+		<if test="@org.apache.commons.lang.StringUtils@isNotEmpty(startDt)">
+	   		<if test="@org.apache.commons.lang.StringUtils@isNotEmpty(endDt)">
+	   			AND DATE_FORMAT(UPLOAD_DATE, '%Y-%m-%d') BETWEEN '${startDt}' AND '${endDt}'
+	   		</if>
+	    </if>		
+		ORDER BY UPLOAD_DATE DESC
+	 	<if test="@org.apache.commons.lang.StringUtils@isNotEmpty(scopeRow)">
+	 		LIMIT ${scopeRow}, ${rowCount}
+	 	</if>
+	</select>
+	
+	<!-- 공지사항 카운트 -->
+	<select id="getNoticeListCount" resultType="int" parameterType="cMap">
+		SELECT COUNT(*) AS cnt
+		  FROM textNoticeTable
+		 WHERE 1=1
+		 <if test="@org.apache.commons.lang.StringUtils@isNotEmpty(searchText)">
+		    AND (TEXTNOTICE_TITLE LIKE '%${searchText}%' or TEXTNOTICE_CONTENT LIKE '%${searchText}%')
+		 </if>
+		 <if test="@org.apache.commons.lang.StringUtils@isNotEmpty(startDt)">
+	   		<if test="@org.apache.commons.lang.StringUtils@isNotEmpty(endDt)">
+	   			AND DATE_FORMAT(UPLOAD_DATE, '%Y-%m-%d') BETWEEN '${startDt}' AND '${endDt}'
+	   		</if>
+	    </if>
+		 ORDER BY UPLOAD_DATE DESC
+	</select>
+	
+	<!-- 공지사항 상세보기 -->
+	<select id="getNoticeView" resultType="cMap" parameterType="dMap">
+		SELECT TEXTNOTICE_SEQ
+			 , UPLOAD_DATE
+			 , TEXTNOTICE_TITLE
+			 , TEXTNOTICE_CONTENT
+			 , TEXTNOTICE_ADMIN
+			 , VIEW_COUNT 
+		     , COALESCE (RESERV,"-") AS RESERV
+		     , IMG_NM
+			 , ORG_IMG_NM
+		FROM textNoticeTable
+		WHERE TEXTNOTICE_SEQ = #{textnoticeSeq}
+	</select>
+	
+	<!-- 
+	
+	 
+			등록, 수정, 삭제
+	
+	
+	 -->
+	
+	<!-- 공지사항 삭제 -->
+	<delete id="deleteNotice" parameterType="dMap">
+		DELETE
+		  FROM textNoticeTable
+		 WHERE TEXTNOTICE_SEQ IN (${textnoticeSeq}) 
+	</delete>
+	
+	<!-- 공지사항 등록 -->
+	<insert id="insertNotice" parameterType="dMap">
+		INSERT INTO textNoticeTable
+		  	 (TEXTNOTICE_TITLE, TEXTNOTICE_CONTENT, UPLOAD_DATE, IMG_NM, ORG_IMG_NM, TEXTNOTICE_ADMIN)
+		VALUES
+			 ( #{textnoticeTitle}, #{textnoticeContent}, now(), #{imgNm}, #{orgImgNm}, #{writer})
+	</insert>
+	
+	<!-- 공지사항 수정 -->
+	<update id="updateNotice" parameterType="dMap">
+		 UPDATE textNoticeTable
+		    SET 
+		      <if test="@org.apache.commons.lang.StringUtils@isNotEmpty(textnoticeTitle)">
+		  	    TEXTNOTICE_TITLE = #{textnoticeTitle}
+			  </if>
+		      <if test="@org.apache.commons.lang.StringUtils@isNotEmpty(textnoticeContent)">
+		  	  , TEXTNOTICE_CONTENT = #{textnoticeContent}
+			  </if>
+			  <if test="@org.apache.commons.lang.StringUtils@isNotEmpty(imgNm)">
+		  	  , IMG_NM = #{imgNm}
+		  	  </if>
+			  <if test="@org.apache.commons.lang.StringUtils@isNotEmpty(orgImgNm)">
+		  	  , ORG_IMG_NM = #{orgImgNm}
+		  	  </if>
+		  WHERE TEXTNOTICE_SEQ = #{textnoticeSeq}
+	</update>
+	
+	<!-- 조회수 업데이트 -->
+	<update id="updateViewCount" parameterType="dMap">
+		UPDATE textNoticeTable SET VIEW_COUNT = VIEW_COUNT+1 WHERE TEXTNOTICE_SEQ = #{textnoticeSeq}
+	</update>
+	
+</mapper>

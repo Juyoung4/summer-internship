@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ETS.connect.mapper.ConnectMapper">
+	
+	<!-- 접속 로그 리스트 -->
+	<select id="getConnectLogList" resultType="cMap" parameterType="dMap">
+		SELECT LOG_IDX
+			 , DATE_FORMAT(LOG_DATE, '%Y-%m-%d %T') as LOG_DATE
+			 , LOG_ID
+			 , LOG_COUNTRY
+			 , LOG_TIMEZONE
+			 , LOG_TELGRM
+			 , LOG_USE
+			 , DATE_FORMAT(LOG_EXP, '%Y-%m-%d %T') as LOG_EXP
+		 FROM CONNECT_LOG
+		 WHERE 1=1
+		   
+		   <if test="@org.apache.commons.lang.StringUtils@isNotEmpty(searchText)">
+		   <choose>
+		   	<when test="@org.apache.commons.lang.StringUtils@isNotEmpty(searchType)">
+		   		<if test="searchType.equals('I')">
+		   			AND LOG_ID LIKE '${searchText}'
+		   		</if>
+		   		<if test="searchType.equals('T')">
+		   			AND LOG_TELGRM LIKE '${searchText}'
+		   		</if>
+		   	</when>
+		   	<otherwise>
+		   		AND (LOG_ID LIKE '${searchText}' or LOG_TELGRM LIKE '${searchText}')
+		   	</otherwise>
+		   </choose>
+		   </if>
+
+		 ORDER BY LOG_IDX DESC
+	 	<if test="@org.apache.commons.lang.StringUtils@isNotEmpty(scopeRow)">
+	 		LIMIT ${scopeRow}, ${rowCount}
+	 	</if>
+	</select>
+	
+	<!-- 접속 로그 카운트 -->
+	<select id="getConnectLogListCount" resultType="int" parameterType="cMap">
+		SELECT COUNT(*) AS cnt
+		FROM CONNECT_LOG
+		WHERE 1=1
+		   
+		   <if test="@org.apache.commons.lang.StringUtils@isNotEmpty(searchText)">
+		   <choose>
+		   	<when test="@org.apache.commons.lang.StringUtils@isNotEmpty(searchType)">
+		   		<if test="searchType = 'I'">
+		   			AND LOG_ID LIKE '${searchText}'
+		   		</if>
+		   		<if test="searchType = 'T'">
+		   			AND LOG_TELGRM like '${searchText}'
+		   		</if>
+		   	</when>
+		   	<otherwise>
+		   		AND (LOG_ID like '${searchText}' or LOG_TELGRM like '${searchText}')
+		   	</otherwise>
+		   </choose>
+		   
+		   </if>
+
+		 ORDER BY LOG_IDX DESC
+	</select>
+	
+</mapper>

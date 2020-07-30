@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/decorators">
+	<decorator name="default" page="default_decorator.ftl">
+		<pattern>/*</pattern>
+	</decorator>
+	
+	<excludes>
+		<pattern>/*.jsp</pattern>
+		<pattern>/*.html</pattern>
+		<pattern>/font*</pattern>
+		<pattern>/js*</pattern>
+		<pattern>/css*</pattern>
+		<pattern>/login*</pattern>
+		<pattern>/images*</pattern>
+		<pattern>*/error*</pattern>
+		<pattern>*/ajax*</pattern>
+		<pattern>*/common/*</pattern>
+		<pattern>*/api/*</pattern>
+		<pattern>/inipay*</pattern>
+	</excludes>
+</decorators>

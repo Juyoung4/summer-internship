@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ETS.paymentlist.mapper.PaymentlistMapper">
+	<!-- 이용권 결제 리스트 -->
+	<select id="getpaymentList" resultType="cMap" parameterType="dMap">
+		SELECT payment.PaymentSeq
+			,  user.id
+			,  UseTicketManage.exchangeName
+			,  UseTicketManage.useTicketName
+			,  UseTicketManage.useTicketPrice
+			,  UseTicketManage.useTicketEvent
+            ,  Event_Info.EventName
+            ,  Event_Info.DiscountRate
+		FROM payment, UseTicketManage, user, Event_Info
+		WHERE 1=1
+			AND payment.userid = user.mem_seq
+			AND payment.uticketname = UseTicketManage.useTicketSeq
+            AND Event_Info.EventSeq != 0
+            AND UseTicketManage.useTicketEvent = Event_Info.EventSeq
+		ORDER BY UseTicketManage.applicationPeriod DESC, UseTicketManage.exchangeName
+		<if test="@org.apache.commons.lang.StringUtils@isNotEmpty(scopeRow)">
+		 		LIMIT ${scopeRow}, ${rowCount}
+		</if>
+	</select>
+	
+	<!-- 이용권 결제 리스트 카운트 -->
+	<select id="getpaymentListCount" resultType="int" parameterType="cMap">
+		SELECT COUNT(*) AS cnt
+		  FROM payment
+		 WHERE 1=1
+		 ORDER BY PaymentSeq DESC
+	</select>
+	
+	<!-- 이벤트 리스트 -->
+	<select id="getuseTicketList" resultType="cMap">
+		SELECT useTicketSeq, useTicketName
+		FROM UseTicketManage
+		WHERE 1=1
+		ORDER BY useTicketSeq DESC, useTicketName DESC
+	</select>
+</mapper>
