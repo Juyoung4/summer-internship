@@ -110,6 +110,8 @@ global setting과 user setting해주기 (내가 다운받은 maven위치에 있�
 ### 20일차 (feature20)
   1. 리스트 불러왔을 때 결제 금액 계산 하는 부분 VIEW에 추가해주고 해당 이용권의 금액 정보와 이벤트 할인율 가지고 계산해서 보여주는 기능 구현
   2. 리스트 목록 부분 엑셀 다운로드 기능 추가
+  
+  
 💡 참고사항: 지금 SVN에 서로 COMMIT하고 MERGE되었기 때문에 내가 작성 안한 부분도 있음
 내가 작성한 부분은
-[eventMg] [useticketMg]에 해당되는 java쪽 과 resource들과 header와 footer와 httputils등임 +[refferal]부분 추가됨
+[eventMg] [useticketMg]에 해당되는 java쪽 과 resource들과 header와 footer와 httputils등임 +[refferal] + [paymentlist]부분 추가됨
