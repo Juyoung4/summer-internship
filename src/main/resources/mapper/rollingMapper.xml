@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ETS.rolling.mapper.rollingMapper">
+
+	<!-- 롤링공지 리스트 -->
+	<select id="getRollingList" resultType="cMap" parameterType="dMap">
+		SELECT notice_seq
+				, start_date
+				, end_date
+				, contents
+				, registrant
+				, exposure
+		  FROM rolling_notice
+		  WHERE 1=1
+		  
+		  <if test='@org.apache.commons.lang.StringUtils@isNotEmpty(searchText)'>
+		  		AND contents LIKE CONCAT('%', '${searchText}', '%')
+		  </if>
+		  
+		  <if test='@org.apache.commons.lang.StringUtils@isNotEmpty(stdate)'>
+		  	<if test='@org.apache.commons.lang.StringUtils@isNotEmpty(eddate)'>
+		  		AND (start_date <![CDATA[>=]]> '${stdate}' AND end_date <![CDATA[<=]]> '${eddate}')
+		  	</if>
+		  </if>
+		 ORDER BY start_date DESC
+	 	<if test="@org.apache.commons.lang.StringUtils@isNotEmpty(scopeRow)">
+	 		<choose>
+	 			<when test='@org.apache.commons.lang.StringUtils@isNotEmpty(listnum)'>
+	 				<if test="listnum='tw'">
+	 					LIMIT ${scopeRow}, 20
+	 				</if>
+	 				<if test="listnum='tt'">
+	 					LIMIT ${scopeRow}, 30
+	 				</if>
+	 				<if test="listnum='ft'">
+	 					LIMIT ${scopeRow}, 50
+	 				</if>
+	 				<if test="listnum='st'">
+	 					LIMIT ${scopeRow}, 70
+	 				</if>
+	 				<if test="listnum='hd'">
+	 					LIMIT ${scopeRow}, 100
+	 				</if>
+	 				<if test="listnum='th'">
+	 					LIMIT ${scopeRow}, 200
+	 				</if>
+	 			</when>
+	 			<otherwise>
+	 				LIMIT ${scopeRow}, ${rowCount}
+	 			</otherwise>
+	 		</choose>
+	 	</if>
+	</select>
+	
+	<!-- 롤링공지 카운트 -->
+	<select id="getRollingListCount" resultType="int" parameterType="cMap">
+		SELECT COUNT(*) AS cnt
+		  FROM rolling_notice
+		  
+		  <if test='@org.apache.commons.lang.StringUtils@isNotEmpty(searchText)'>
+		  		AND contents LIKE CONCAT('%', '${searchText}', '%')
+		  </if>
+		  
+		  <if test='@org.apache.commons.lang.StringUtils@isNotEmpty(stdate)'>
+		  	<if test='@org.apache.commons.lang.StringUtils@isNotEmpty(eddate)'>
+		  		AND (start_date <![CDATA[>=]]> '${stdate}' AND end_date <![CDATA[<=]]> '${eddate}')
+		  	</if>
+		  </if>
+		 ORDER BY start_date DESC
+	</select>
+	
+	<!-- 롤링공지 등록 -->
+	<insert id="insertRolling" parameterType="dMap">
+		INSERT INTO rolling_notice
+		  	 ( start_date, end_date, contents, registrant, exposure )
+		VALUES
+			 ( #{from}, #{to}, #{icontents}, "admin1", "D" )
+	</insert>
+	
+	<!-- 롤링공지 삭제 -->
+	<delete id="deleteRolling" parameterType="dMap">
+		DELETE
+		  FROM rolling_notice
+		 WHERE notice_seq IN (${noticeSeq})
+	</delete>
+</mapper>

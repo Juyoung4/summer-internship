@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ETS.join.mapper.joinMapper">
+	
+	<!-- 승인대기 리스트 -->
+	<select id="getUserList" resultType="cMap" parameterType="dMap">
+		SELECT mem_seq
+				, admin_date
+				, id
+				, country
+				, timezone
+				, telegram_id
+				, ref_code
+		  FROM user
+		  WHERE state='D'
+		 ORDER BY admin_date DESC
+	 	<if test="@org.apache.commons.lang.StringUtils@isNotEmpty(scopeRow)">
+	 		LIMIT ${scopeRow}, ${rowCount}
+	 	</if>
+	</select>
+	
+	<!-- 반려 리스트 -->
+	<select id="getDUserList" resultType="cMap" parameterType="dMap">
+		SELECT mem_seq
+				, admin_date
+				, id
+				, country
+				, timezone
+				, telegram_id
+				, ref_code
+				, state
+		  FROM user
+		   WHERE state='N'
+		 ORDER BY admin_date DESC
+	 	<if test="@org.apache.commons.lang.StringUtils@isNotEmpty(scopeRow)">
+	 		LIMIT ${scopeRow}, ${rowCount}
+	 	</if>
+	</select>
+	
+	<!-- 승인 카운트 -->
+	<select id="getUserListCount" resultType="int" parameterType="cMap">
+		SELECT COUNT(*) AS cnt
+		  FROM user
+		  WHERE state='D'
+		 ORDER BY admin_date DESC
+	</select>
+	
+	<!-- 반려 카운트 -->
+	<select id="getDUserListCount" resultType="int" parameterType="cMap">
+		SELECT COUNT(*) AS cnt
+		  FROM user
+		  WHERE state='N'
+		 ORDER BY admin_date DESC
+	</select>
+	
+	<!-- 승인대기 사용자 반려 -->
+	<update id="userDelay" parameterType="dMap">
+		 UPDATE user
+		    SET state='N'
+		  WHERE mem_seq IN (${memSeq})
+	</update>
+	
+	<!-- 승인대기 사용자 승인 -->
+	<update id="userApprove" parameterType="dMap">
+		 UPDATE user
+		    SET state='Y'
+		  WHERE mem_seq IN (${memSeq})
+	</update>
+	
+	<!-- 반려 사용자 승인 -->
+	<update id="DuserApprove" parameterType="dMap">
+		 UPDATE user
+		    SET state='Y'
+		  WHERE mem_seq IN (${memSeq})
+	</update>
+</mapper>

@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_2.dtd">
+<!-- entBox Tag Lib -->
+
+<taglib>
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.1</jspversion>
+	<shortname>Chart</shortname>
+
+	<tag>
+		<name>Chart</name>
+		<tagclass>ETS.common.taglib.Chart</tagclass>
+
+		<!-- 생성 될 Chart Id값 -->
+		<attribute>
+			<name>id</name>
+		</attribute>
+		
+		<!-- 생성 될 Chart Type값 -->
+		<attribute>
+			<name>type</name>
+		</attribute>
+		
+		<!-- 생성 될 Chart data값 -->
+		<attribute>
+			<name>data</name>
+		</attribute>
+		
+		<!-- 생성 될 Chart legend값 -->
+		<attribute>
+			<name>legend</name>
+		</attribute>
+		
+		<!-- 생성 될 Chart Width값 -->
+		<attribute>
+			<name>width</name>
+		</attribute>
+		
+		<!-- 생성 될 Chart Height값 -->
+		<attribute>
+			<name>height</name>
+		</attribute>
+		
+		<!-- 생성 될 Chart animation값 -->
+		<attribute>
+			<name>animation</name>
+		</attribute>
+		
+		<!-- 생성 될 Chart animationSteps -->
+		<attribute>
+			<name>animationSteps</name>
+		</attribute>
+		
+		<!-- 그리드 내부 격자 표시 여부 -->
+		<attribute>
+			<name>scaleShowGridLines</name>
+		</attribute>
+		
+		<!-- Mouse Over ToolTip Show? -->
+		<attribute>
+			<name>showTooltips</name>
+		</attribute>
+		
+		<!-- 생성 될 Chart animationProgress function -->
+		<attribute>
+			<name>onAnimationProgress</name>
+		</attribute>
+		
+		<!-- 생성 될 Chart onAnimationComplete function -->
+		<attribute>
+			<name>onAnimationComplete</name>
+		</attribute>
+
+	</tag>
+
+</taglib> 
+

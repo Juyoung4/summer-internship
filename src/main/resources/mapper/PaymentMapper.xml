@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ETS.payment.mapper.PaymentMapper">
+	<!-- 이용권 리스트 -->
+	<select id="getuseTicketList" resultType="cMap" parameterType="dMap">
+		SELECT UseTicketManage.useTicketSeq
+			,  UseTicketManage.exchangeName
+			,  UseTicketManage.useTicketName
+			,  UseTicketManage.applicationPeriod
+			,  UseTicketManage.useTicketStatus
+			,  UseTicketManage.useTicketPrice
+			,  Event_Info.EventName
+			,  Event_Info.DiscountRate
+		FROM Event_Info, UseTicketManage
+		WHERE 1=1
+			AND UseTicketManage.useTicketEvent = Event_Info.EventSeq
+		ORDER BY UseTicketManage.applicationPeriod DESC, UseTicketManage.exchangeName
+		<if test="@org.apache.commons.lang.StringUtils@isNotEmpty(scopeRow)">
+		 		LIMIT ${scopeRow}, ${rowCount}
+		</if>
+	</select>
+	
+	<!-- 이용권 리스트 카운트 -->
+	<select id="getuseTicketListCount" resultType="int" parameterType="cMap">
+		SELECT COUNT(*) AS cnt
+		  FROM UseTicketManage
+		 WHERE 1=1
+		 ORDER BY exchangeName DESC
+	</select>
+	
+	<!-- 이벤트 리스트 -->
+	<select id="geteventList" resultType="cMap">
+		SELECT EventSeq,EventName,DiscountRate
+		FROM Event_Info
+		WHERE 1=1
+		ORDER BY EventSeq,EventName
+	</select>
+	
+	<!-- 거래소 리스트 -->
+	<select id="getExchangeList" resultType="cMap">
+		SELECT ExchangeName
+		FROM Exchange_Info
+		WHERE 1=1
+		ORDER BY ExchangeName
+	</select>
+	
+	<!--이용권에 이벤트 등록 -->
+	<update id="registerEvent" parameterType="dMap">
+		UPDATE UseTicketManage 
+			SET 
+			<choose>
+				<when test="@org.apache.commons.lang.StringUtils@isNotEmpty(searchType)">
+					useTicketEvent = ${searchType}
+				</when>
+				<otherwise>
+					useTicketStatus = ${useTicketStatus}
+				</otherwise>
+			</choose>
+		   	WHERE useTicketSeq = ${useTicketSeq}
+	</update>
+	
+	<!-- 이용권 등록 -->
+	<insert id="registeruseTicket" parameterType="dMap">
+		INSERT INTO UseTicketManage
+		  	 ( exchangeName, useTicketName, applicationPeriod, useTicketStatus, useTicketPrice, useTicketEvent)
+		VALUES
+			 ( #{EXsearchType}, #{useTicketName}, #{useTicketPeriod}, 0 ,#{useTicketPrice}, 0)
+	</insert>
+	
+	<!-- 이용권 삭제 -->
+	<delete id="deleteuseTicket" parameterType="dMap">
+		DELETE
+		  FROM UseTicketManage
+		 WHERE useTicketSeq = ${useTicketSeq}
+	</delete>
+	
+	<!--이벤트 해제 -->
+	<update id="releaseEvent" parameterType="dMap">
+		UPDATE UseTicketManage 
+			SET 
+			useTicketEvent = 0
+		   	WHERE useTicketSeq = ${useTicketSeq}
+	</update>
+</mapper>

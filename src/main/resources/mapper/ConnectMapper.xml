@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ETS.connect.mapper.ConnectMapper">
+
+	<!-- 접속 로그 리스트 -->
+	<select id="getLogList" resultType="cMap" parameterType="cMap">
+		SELECT LOG_IDX
+			 , DATE_FORMAT(LOG_DT, '%Y-%m-%d %T') as LOG_DT
+			 , LOG_ID
+			 , LOG_COUNTRY
+			 , LOG_TIMEZONE
+			 , LOG_TELGRM
+			 , LOG_USE
+			 , DATE_FORMAT(LOG_EXP, '%Y-%m-%d %T') as LOG_EXP
+		  FROM CONNECT_LOG
+		 WHERE 1=1
+		 
+		 <if test="@org.apache.commons.lang.StringUtils@isNotEmpty(startDt)">
+		  <if test="@org.apache.commons.lang.StringUtils@isNotEmpty(endDt)">
+		  	AND (LOG_DT BETWEEN '${startDt}' AND DATE_ADD('${endDt}', INTERVAL 1 DAY))
+		  </if>
+		 </if>
+		  	
+		  <if test="@org.apache.commons.lang.StringUtils@isNotEmpty(searchText)">
+		  	<if test="@org.apache.commons.lang.StringUtils@isNotEmpty(searchType)">
+		  	<choose>
+		  		<when test="searchType == 'a'">
+		  			AND LOG_ID LIKE '${searchText}'
+		  		</when>
+		 		<when test="searchType == 'b'">
+		  			AND LOG_TELGRM LIKE '${searchText}'
+		  		</when>
+		  	</choose>	
+		  	</if>
+			<if  test="@org.apache.commons.lang.StringUtils@isNotEmpty(!searchType)">
+				AND (LOG_ID LIKE '${searchText}' or LOG_TELGRM LIKE '${searchText}')
+			</if>	
+		  </if>
+
+		 ORDER BY LOG_IDX DESC
+	 	<if test="@org.apache.commons.lang.StringUtils@isNotEmpty(scopeRow)">
+	 		LIMIT ${scopeRow}, ${rowCount}
+	 	</if>
+	</select>
+	
+	<!-- 접속 로그 카운트 -->
+	<select id="getLogListCount" resultType="int" parameterType="cMap">
+		SELECT COUNT(*) AS cnt
+		  FROM CONNECT_LOG
+		 WHERE 1=1
+		 
+		 <if test="@org.apache.commons.lang.StringUtils@isNotEmpty(startDt)">
+		  <if test="@org.apache.commons.lang.StringUtils@isNotEmpty(endDt)">
+		  	AND (LOG_DT BETWEEN '${startDt}' AND DATE_ADD('${endDt}', INTERVAL 1 DAY))
+		  </if>
+		 </if>
+		  	
+		  <if test="@org.apache.commons.lang.StringUtils@isNotEmpty(searchText)">
+		  	<if test="@org.apache.commons.lang.StringUtils@isNotEmpty(searchType)">
+		  	<choose>
+		  		<when test="searchType == 'a'">
+		  			AND LOG_ID LIKE '${searchText}'
+		  		</when>
+		 		<when test="searchType == 'b'">
+		  			AND LOG_TELGRM LIKE '${searchText}'
+		  		</when>
+		  	</choose>	
+		  	</if>
+			<if  test="@org.apache.commons.lang.StringUtils@isNotEmpty(!searchType)">
+				AND (LOG_ID LIKE '${searchText}' or LOG_TELGRM LIKE '${searchText}')
+			</if>	
+		  </if>
+
+		 ORDER BY LOG_IDX DESC
+	</select>
+	
+</mapper>
