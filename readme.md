@@ -18,6 +18,7 @@
     - [톰캣 서버 연동하기]()
 
 5. 간단한 웹 페이지 구성 (home.jsp)
+
 -------------
 #### ❗2일차
 
@@ -26,3 +27,10 @@
 2. MySQL DB 조회 및 삽입 구현
 
 3. Signup page와 Login page 구현
+
+------
+
+#### **examples**
+![mysql_Test](images/image1.png)<br>
+
+![mysql_Test](images/image2.png)
