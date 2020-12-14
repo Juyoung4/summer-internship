@@ -9,7 +9,7 @@
     - tomcat 설치하기
 
 2. maven 연동하기
-    - [MAVEN 설치/연동하는 방법]()
+    - [MAVEN 설치/연동하는 방법](https://www.notion.so/2-Maven-6b1c937c88d640969960bcf5b03e091a)
 
 3. Spring MVC Project 생성하기
     - [Spring MVC Project 생성하기]()
