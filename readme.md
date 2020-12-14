@@ -5,7 +5,7 @@
 1. 환경 세팅
     - 이클립스 설치하기 -> [설치](https://www.notion.so/1-JAVA-018d0f3a62a443aaa09b5c37832cdc69)
     - mysql 설치하기
-    - spring (market에서 설치)
+    - spring (market에서 설치) -> 설치(https://www.notion.so/3-Spring-fd506f8ecdba4cddbd9799305e7c9e1e)
     - tomcat 설치하기
 
 2. maven 연동하기
